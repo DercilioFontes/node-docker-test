@@ -11,6 +11,7 @@
   "author": "Dercilio Fontes dercilioafontes@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "csv-parse": "^3.0.0",
     "express": "^4.16.3"
   },
   "devDependencies": {},
