@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "csv-parse": "^3.0.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "jsonfile": "^5.0.0"
   },
   "devDependencies": {},
   "repository": {

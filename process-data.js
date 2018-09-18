@@ -1,5 +1,6 @@
 const fs = require('fs');
 const csv = require('csv-parse');
+const jsonfile = require('jsonfile');
 
 // Processing the csv file to a organized Object
 /** Data Model **/
@@ -87,15 +88,19 @@ const csvStream = csv()
   .on('end', () => {
     console.log("Stream finished.");
 
+    // Save the processed data in a json file (in this version)
+    jsonfile.writeFile('./data/data-reduced.json', usersVisits, (err) => {
+      if(err) console.error(err);
+    });
+
     // ## For test ##
-    //console.log(JSON.stringify(usersVisits, null, 2));
+    // console.log(JSON.stringify(usersVisits, null, 2));
   })
 
-  // Function to call the processing and return the usersVisitsObj
-  const processData = () => {
-    readStream.pipe(csvStream);
-    return usersVisits;
-  }
+const processData = () => {
+  readStream.pipe(csvStream);
+}
+ 
 
   // Exports processing of csv
   module.exports = {
