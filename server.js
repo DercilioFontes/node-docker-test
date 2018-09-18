@@ -2,6 +2,15 @@
 
 const express = require('express');
 
+// Require the processing of the csv file
+// And the userVisits object generated
+const data = require('./process-data.js');
+const usersVisitsObj = data.processData();
+
+// ## For test ##
+console.log(JSON.stringify(usersVisitsObj, null, 2));
+
+
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';

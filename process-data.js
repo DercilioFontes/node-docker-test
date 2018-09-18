@@ -86,8 +86,18 @@ const csvStream = csv()
   })
   .on('end', () => {
     console.log("Stream finished.");
-    console.log(JSON.stringify(usersVisits, null, 2));
+
+    // ## For test ##
+    //console.log(JSON.stringify(usersVisits, null, 2));
   })
 
-  // Pipe reaStream with 
-  readStream.pipe(csvStream);
+  // Function to call the processing and return the usersVisitsObj
+  const processData = () => {
+    readStream.pipe(csvStream);
+    return usersVisits;
+  }
+
+  // Exports processing of csv
+  module.exports = {
+    processData: processData,
+  }
