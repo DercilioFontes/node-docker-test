@@ -12,5 +12,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DercilioFontes/node-docker-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DercilioFontes/node-docker-test/issues"
+  },
+  "homepage": "https://github.com/DercilioFontes/node-docker-test#readme"
 }
