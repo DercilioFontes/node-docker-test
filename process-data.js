@@ -48,12 +48,18 @@ usersVisits: {
 
 */
 
+// File sources
+const fileCSV = './data/data-reduced.csv';
+const fileJSON = './data/data-reduced.json';
+
+
 // Empyt Object to organize the data
 const usersVisits = {};
 
 // Pipe Stream to read the csv (row by row) 
-// and organize the data in the Object
-const readStream = fs.createReadStream('./data/data-reduced.csv');
+// and organize the data in an Object
+// and send to DB
+const readStream = fs.createReadStream(fileCSV);
 
 const csvStream = csv()
   .on('data', (row) => {
@@ -68,8 +74,8 @@ const csvStream = csv()
     if(usersVisits[userID]) {
 
       usersVisits[userID].visits[datetime] = {
-        os: os,
-        device: device
+        os: Number(os),
+        device: Number(device)
       }
 
       // Or Add the new user
@@ -78,18 +84,19 @@ const csvStream = csv()
       usersVisits[userID] = {
         visits: {
           [datetime]: {
-            os: os,
-            device: device
+            os: Number(os),
+            device: Number(device)
           }
         }
       }
+
     }
   })
   .on('end', () => {
     console.log("Stream finished.");
 
     // Save the processed data in a json file (in this version)
-    jsonfile.writeFile('./data/data-reduced.json', usersVisits, (err) => {
+    jsonfile.writeFile(fileJSON, usersVisits, (err) => {
       if(err) console.error(err);
     });
 
@@ -100,9 +107,8 @@ const csvStream = csv()
 const processData = () => {
   readStream.pipe(csvStream);
 }
- 
 
-  // Exports processing of csv
-  module.exports = {
-    processData: processData,
-  }
+// Exports processing of csv
+module.exports = {
+  processData: processData,
+}
